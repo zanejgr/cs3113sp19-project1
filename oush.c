@@ -22,10 +22,9 @@ int main(int argc,char**argv){
 		execvbuf[execvbufindex++]=strtok(inbuf," ");
 		//process input line
 		while(execvbuf[execvbufindex++]=strtok(NULL," "));
-		//there's probably an error below. delete this comment if it works
+		//BG option
 		if(!strncmp(execvbuf[execvbufindex-2],"BG",2)){
 			execvbuf[execvbufindex-2]='\0';
-			perror("going into bg");
 			BGExec(execvbuf);
 			continue;
 		}
