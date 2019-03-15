@@ -10,7 +10,13 @@ int main(int argc,char**argv){
 	char* execvbuf[LINE_MAX];	//current command after processing
 	unsigned short cmdflags;	//set if BG or PIPE is specified
 
-	FILE* fp = stdin;		//batchfile, or stdin if none
+	//open the batchfile
+	FILE* fp;
+	if(argc!=2||!(fp=fopen(argv[0],"r"))){
+		log_err("arguments");
+		return 1;
+	}	
+
 	while(fgets(inbuf,LINE_MAX, fp)){
 		int pipefd[2][2];	//2 pipes, one for previous and one for next process
 		int wstatus;
